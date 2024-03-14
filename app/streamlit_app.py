@@ -5,17 +5,6 @@ from datetime import datetime
 from extraction import get_fortnite_api, fetch_player_data
 
 
-def save_player_data(player_name, data):
-    # Format the current date and time for the filename
-    current_datetime = datetime.now().strftime("%Y-%m-%d %H-%M-%S")
-    file_path = f"./raw_data/{player_name}_raw_data_{current_datetime}.json"
-
-    with open(file_path, "w") as f:
-        json.dump(data, f)
-
-    return file_path
-
-
 # Streamlit UI for API Key and Player Name Input
 st.title("Fortnite Player Statistics")
 
