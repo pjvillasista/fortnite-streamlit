@@ -2,20 +2,7 @@ import streamlit as st
 from fortnite_api import FortniteAPI
 import json
 from datetime import datetime
-
-
-def get_fortnite_api(user_api_key):
-    # Initialize the API with the user-provided API key
-    return FortniteAPI(api_key=user_api_key)
-
-
-def fetch_player_data(api, player_name):
-    try:
-        player_stats = api.stats.fetch_by_name(player_name)
-        return player_stats.raw_data
-    except Exception as e:
-        st.error(f"Failed to fetch data for {player_name}: {e}")
-        return None
+from extraction import get_fortnite_api, fetch_player_data
 
 
 def save_player_data(player_name, data):
@@ -41,10 +28,8 @@ if st.button("Fetch Data"):
         player_data = fetch_player_data(api, player_name)
 
         if player_data:
-            file_path = save_player_data(player_name, player_data)
-            st.success(f"Data for {player_name} has been saved to {file_path}")
-
-            # Display some data directly in the app
+            st.success(f"Data fetched successfully for {player_name}")
+            # Display data directly in the app
             st.write("## Player Overview")
             st.json(player_data)  # Displaying JSON data directly.
         else:

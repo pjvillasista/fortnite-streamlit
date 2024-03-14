@@ -1,32 +1,16 @@
-import requests
 from fortnite_api import FortniteAPI
-from dotenv import load_dotenv
-import os
-import json
-from datetime import datetime
+import streamlit as st
 
 
-# Load Environment Files
-load_dotenv()
-API_KEY = os.getenv("API_KEY")
-
-# Initialize the API
-api = FortniteAPI(api_key=API_KEY)
+def get_fortnite_api(user_api_key):
+    # Initialize the API with the user-provided API key
+    return FortniteAPI(api_key=user_api_key)
 
 
-def fetch_player_data():
-    player_name = input("Enter Fortnite Player Name: ")
-
-    player_stats = api.stats.fetch_by_name(player_name)
-    raw_data = player_stats.raw_data
-
-    # Format the current date and time for the filename
-    current_datetime = datetime.now().strftime("%Y-%m-%d %H-%M-%S")
-    file_path = f"./raw_data/{player_name}_raw_data_{current_datetime}.json"
-
-    with open(file_path, "w") as f:
-        json.dump(raw_data, f)
-    print(f"Data for {player_name} has been saved to {file_path}")
-
-
-fetch_player_data()
+def fetch_player_data(api, player_name):
+    try:
+        player_stats = api.stats.fetch_by_name(player_name)
+        return player_stats.raw_data
+    except Exception as e:
+        st.error(f"Failed to fetch data for {player_name}: {e}")
+        return None
