@@ -1,6 +1,17 @@
 import streamlit as st
 from fortnite_api import FortniteAPI
 from extraction import get_fortnite_api, fetch_player_data
+from dotenv import load_dotenv
+import os
+
+
+load_dotenv()
+
+api_key = os.getenv("API_KEY")
+
+
+def get_fortnite_api():
+    return FortniteAPI(api_key=api_key)
 
 
 def display_mode_stats(mode_data, mode_name, stats_keys):
@@ -27,46 +38,78 @@ def display_mode_stats(mode_data, mode_name, stats_keys):
         col.metric(formatted_key, value)
 
 
-st.title("Fortnite Player Statistics")
+player_data = {}
 
-st.markdown(
-    """
-    To use this tool, you will need an API key from [Fortnite-API](https://dash.fortnite-api.com/).
-    Please visit the link, sign up for an account if you haven't already, and obtain your API key to proceed.
-"""
+# Page configuration
+st.set_page_config(
+    page_title="Fortnite Statistics Tracker",
+    page_icon="🎮",
+    layout="wide",
+    initial_sidebar_state="expanded",
 )
 
-api_key = st.text_input("Enter your Fortnite API Key:", type="password")
-player_name = st.text_input("Enter Fortnite Player Name:", "")
+# Sidebar
+with st.sidebar:
+    st.title("🎮 Fortnite Stats Tracker")
+    player_name = st.text_input("Enter Fortnite Player Name:", key="player_name")
 
-if st.button("Fetch Data") and api_key and player_name:
-    api = get_fortnite_api(api_key)
-    player_data = fetch_player_data(api, player_name)
+    if st.button("Fetch Data"):
+        # Use session state to store API response
+        api = get_fortnite_api()
+        st.session_state.player_data = fetch_player_data(
+            api, st.session_state.player_name
+        )
 
-    if player_data and "stats" in player_data:
-        st.success(f"Data fetched successfully for {player_name}")
+# Use session state to check if player_data exists
+if "player_data" in st.session_state and st.session_state.player_data:
+    player_data = st.session_state.player_data
+    if "stats" in player_data:
+        st.success(f"Data fetched successfully for {st.session_state.player_name}")
 
-        # Overview stats at the top
-        overall_stats = player_data["stats"]["all"]["overall"]
-
-        overview_keys = ["winRate", "wins", "kd", "kills"]
-        display_mode_stats(overall_stats, "Overview", overview_keys)
-
-        st.markdown("---")  # Visual separator
-
-        game_mode_stats = {
-            "Solo": ["wins", "winRate", "kills", "kd", "top10", "top25"],
-            "Duo": ["wins", "winRate", "kills", "kd", "top5", "top12"],
-            "Trios": ["wins", "winRate", "kills", "kd", "top3", "top6"],
-            "Squad": ["wins", "winRate", "kills", "kd", "top3", "top6"],
-            "LTM": ["wins", "winRate", "kills", "kd", "top10", "top25"],
+        # Platform filter
+        platform_options = {
+            "All": "all",
+            "PC": "keyboardMouse",
+            "Console": "gamepad",
+            "Touch": "touch",
         }
+        selected_platform = st.selectbox(
+            "Select Platform:", list(platform_options.keys()), key="platform_filter"
+        )
 
-        for mode, stats_keys in game_mode_stats.items():
-            mode_data = player_data["stats"]["all"].get(mode.lower(), {})
-            if mode_data:  # If data available for the mode
-                display_mode_stats(mode_data, mode, stats_keys)
-            else:
-                st.warning(f"No data available for {mode} mode.")
+        platform_data = player_data["stats"][platform_options[selected_platform]]
+
+        if platform_data:
+            # Display overview stats for the selected platform
+            if "overall" in platform_data:
+                st.markdown("### Overview Stats")
+                overall_stats = platform_data["overall"]
+                overview_keys = ["winRate", "wins", "kd", "kills"]
+                display_mode_stats(overall_stats, "Overview", overview_keys)
+
+            st.markdown("---")  # Visual separator
+
+            # Display game mode-specific stats for the selected platform
+            game_mode_stats = {
+                "Solo": ["wins", "winRate", "kills", "kd", "top10", "top25"],
+                "Duo": ["wins", "winRate", "kills", "kd", "top5", "top12"],
+                "Trios": ["wins", "winRate", "kills", "kd", "top3", "top6"],
+                "Squad": ["wins", "winRate", "kills", "kd", "top3", "top6"],
+                "LTM": ["wins", "winRate", "kills", "kd", "top10", "top25"],
+            }
+
+            for mode, stats_keys in game_mode_stats.items():
+                mode_data = platform_data.get(mode.lower(), {})
+                if mode_data:  # If data is available for the mode
+                    display_mode_stats(mode_data, mode, stats_keys)
+                else:
+                    st.warning(
+                        f"No data available for {mode} mode on {selected_platform}."
+                    )
+
+        else:
+            st.error(f"No data available for {selected_platform} platform.")
     else:
         st.error("Failed to fetch player data or player data is missing.")
+else:
+    st.info("Please enter a player name and click 'Fetch Data'.")
