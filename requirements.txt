@@ -2,3 +2,5 @@ fortnite-api
 pandas
 numpy
 streamlit
+python-dotenv
+plotly
