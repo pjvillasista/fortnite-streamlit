@@ -21,7 +21,7 @@ This Streamlit application provides a comprehensive overview of player statistic
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/fortnite-stats-tracker.git
+git clone https://github.com/pjvillasista/fortnite-stats-tracker.git
 cd fortnite-stats-tracker
 ```
 
