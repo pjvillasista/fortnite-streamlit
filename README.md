@@ -44,7 +44,7 @@ To use the application, you'll need Python 3.6 or later. Follow these steps to s
 Run the following command to start the application:
 
 ```bash
-streamlit run app.py
+streamlit run .\app\streamlit_app.py
 ```
 
 ## Customization
