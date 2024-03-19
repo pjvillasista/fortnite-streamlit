@@ -1,57 +1,65 @@
 # Fortnite Statistics Tracker
 
-This Streamlit application provides a comprehensive overview of player statistics in Fortnite, including detailed metrics across various game modes such as Solo, Duo, Squad, and LTM. It fetches real-time data using the Fortnite-API, offering insights into player performance, win rates, kills, and much more.
+This Streamlit application provides a comprehensive analysis of Fortnite player statistics, leveraging the Fortnite-API to fetch real-time data. It offers an insightful overview of player performance, including win rate, total wins, kills, and K/D ratio across different platforms and game modes.
 
-## Features
+## Key Features
 
-- **Overview Stats**: Get a quick glance at your overall performance in Fortnite, including your win rate, total wins, K/D ratio, and total kills.
-- **Game Mode Breakdown**: Detailed statistics for each game mode, allowing you to understand your performance across Solo, Duo, Squad, and LTM matches.
-- **Real-Time Data**: Utilizes the Fortnite-API to fetch the latest player data, ensuring you're always viewing the most current statistics.
+- **Real-Time Data Fetching**: Utilizes the Fortnite-API to access up-to-date player statistics.
+- **Dynamic Platform Filtering**: Users can filter statistics by platform (All, PC, Console, Touch) without re-fetching data, thanks to Streamlit's session state management.
+- **Comprehensive Stat Overview**: Displays key performance indicators such as Win Rate, Total Wins, K/D Ratio, and Kills at a glance.
+- **Detailed Game Mode Analysis**: Breaks down player statistics by game mode (Solo, Duo, Trios, Squad, LTM) for a deeper understanding of performance.
+- **Interactive Charts**: Incorporates Plotly charts to visually represent player statistics, enhancing data interpretation and engagement.
+- **Efficient Data Handling**: Leverages Streamlit's session state to maintain data across reruns, minimizing API calls and enhancing user experience.
 
-## Getting Started
+## Installation
 
-### Prerequisites
+Before running the app, ensure you have Python 3.6+ installed. Then, follow these steps:
 
-- Python 3.6 or later.
-- Streamlit
-- A Fortnite-API key ([obtain one here](https://dash.fortnite-api.com/))
-
-### Installation
-
-1. Clone the repository:
+1. **Clone the Repository**:
 
 ```bash
-git clone https://github.com/pjvillasista/fortnite-stats-tracker.git
+git clone https://github.com/yourusername/fortnite-stats-tracker.git
 cd fortnite-stats-tracker
 ```
 
-2. Install the required Python packages:
+````
+
+2. **Install Requirements**:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Running the App
+3. **Setup Environment Variables**:
 
-To run the app, navigate to the project directory and run:
+Create a `.env` file in the project root with your Fortnite-API key:
+
+```plaintext
+API_KEY=your_fortnite_api_key_here
+```
+
+## Running the App
+
+Execute the app with Streamlit by running:
 
 ```bash
-streamlit run streamlit_app.py
+streamlit run app.py
 ```
 
 ## Configuration
 
-This app uses Streamlit for the web interface and visualization. You can configure Streamlit settings through `~/.streamlit/config.toml` or environment variables. For more details on Streamlit configuration, refer to [Streamlit's documentation](https://docs.streamlit.io/library/advanced-features/configuration).
+The app is designed with flexibility in mind, allowing for configuration via Streamlit's `set_page_config` method. Adjust the page title, icon, and layout to suit your preferences. Streamlit's session state is utilized to optimize data handling and user experience.
 
 ## Contributing
 
-Contributions are welcome! If you have suggestions for improvements or bug fixes, please open an issue or pull request.
+Contributions to the Fortnite Statistics Tracker are welcome! Whether it's feature enhancements, bug fixes, or documentation improvements, please feel free to fork the repository, make your changes, and submit a pull request.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
 
 ## Acknowledgments
 
-- Thanks to [Fortnite-API](https://dash.fortnite-api.com/) for providing the API used in this project.
+- Special thanks to [Fortnite-API](https://dash.fortnite-api.com/) for providing the API used in this project.
 - This project is not affiliated with, maintained, authorized, endorsed, or sponsored by Epic Games or any of its affiliates.
+````
