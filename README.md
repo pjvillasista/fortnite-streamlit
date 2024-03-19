@@ -2,6 +2,8 @@
 
 This Streamlit application provides a comprehensive analysis of Fortnite player statistics, leveraging the Fortnite-API to fetch real-time data. It offers an insightful overview of player performance, including win rate, total wins, kills, and K/D ratio across different platforms and game modes.
 
+![alt text](image.png)
+
 ## Key Features
 
 - **Real-Time Data Fetching**: Utilizes the Fortnite-API to access up-to-date player statistics.
