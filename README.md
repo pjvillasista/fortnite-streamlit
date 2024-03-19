@@ -4,61 +4,61 @@ This Streamlit application provides a comprehensive analysis of Fortnite player 
 
 ![image](https://github.com/pjvillasista/fortnite-streamlit/assets/93170137/6a01d14e-d4e1-44a7-b476-51f792edc2b3)
 
-## Key Features
 
-- **Real-Time Data Fetching**: Utilizes the Fortnite-API to access up-to-date player statistics.
-- **Dynamic Platform Filtering**: Users can filter statistics by platform (All, PC, Console, Touch) without re-fetching data, thanks to Streamlit's session state management.
-- **Comprehensive Stat Overview**: Displays key performance indicators such as Win Rate, Total Wins, K/D Ratio, and Kills at a glance.
-- **Detailed Game Mode Analysis**: Breaks down player statistics by game mode (Solo, Duo, Trios, Squad, LTM) for a deeper understanding of performance.
-- **Interactive Charts**: Incorporates Plotly charts to visually represent player statistics, enhancing data interpretation and engagement.
-- **Efficient Data Handling**: Leverages Streamlit's session state to maintain data across reruns, minimizing API calls and enhancing user experience.
+## Features at a Glance
 
-## Installation
+- **Real-Time Data Integration**: Directly integrates with Fortnite-API, ensuring access to the latest player statistics.
+- **Adaptive Platform Filters**: Empowers users to seamlessly filter statistics by platform (All, PC, Console, Touch), leveraging Streamlit's efficient session state management.
+- **Insightful Performance Metrics**: Offers a comprehensive dashboard of performance indicators including Win Rate, Total Wins, K/D Ratio, and Kills.
+- **Granular Game Mode Insights**: Provides detailed analysis across game modes (Solo, Duo, Trios, Squad, LTM), offering tailored insights into player strategies and performance.
+- **Engaging Data Visualizations**: Utilizes Plotly for interactive charts, transforming complex data into intuitive visual stories.
+- **Optimized Data Management**: Efficiently handles data with Streamlit's session state, ensuring minimal API requests and a fluid user experience.
 
-Before running the app, ensure you have Python 3.6+ installed. Then, follow these steps:
+## Getting Started
+
+To use the application, you'll need Python 3.6 or later. Follow these steps to set up:
 
 1. **Clone the Repository**:
 
-```bash
-git clone https://github.com/yourusername/fortnite-stats-tracker.git
-cd fortnite-stats-tracker
-```
+   ```bash
+   git clone https://github.com/yourusername/fortnite-stats-tracker.git
+   cd fortnite-stats-tracker
+   ```
 
+2. **Install Dependencies**:
 
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-2. **Install Requirements**:
+3. **Configure API Access**:
 
-```bash
-pip install -r requirements.txt
-```
+   Set up your Fortnite-API key in a `.env` file at the project's root:
 
-3. **Setup Environment Variables**:
+   ```plaintext
+   API_KEY=your_fortnite_api_key_here
+   ```
 
-Create a `.env` file in the project root with your Fortnite-API key:
+## Launching the App
 
-```plaintext
-API_KEY=your_fortnite_api_key_here
-```
-
-## Running the App
-
-Execute the app with Streamlit by running:
+Run the following command to start the application:
 
 ```bash
 streamlit run app.py
 ```
 
-## Configuration
+## Customization
 
-The app is designed with flexibility in mind, allowing for configuration via Streamlit's `set_page_config` method. Adjust the page title, icon, and layout to suit your preferences. Streamlit's session state is utilized to optimize data handling and user experience.
+The app is built with adaptability in mind, allowing users to configure settings via Streamlit's `set_page_config` method for a personalized experience. It efficiently uses Streamlit's session state for data retention and smooth interactions.
 
-## Contributing
+## How to Contribute
 
-Contributions to the Fortnite Statistics Tracker are welcome! Whether it's feature enhancements, bug fixes, or documentation improvements, please feel free to fork the repository, make your changes, and submit a pull request.
+We welcome contributions! If you have ideas for new features, improvements, or bug fixes, please fork the repository, commit your updates, and submit a pull request.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
+This project is available under the MIT License. For more details, see the [LICENSE](LICENSE.md) file.
+
 
 ## Acknowledgments
 
