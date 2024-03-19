@@ -21,7 +21,7 @@ To use the application, you'll need Python 3.6 or later. Follow these steps to s
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/yourusername/fortnite-stats-tracker.git
+   git clone https://github.com/pjvillasista/fortnite-stats-tracker.git
    cd fortnite-stats-tracker
    ```
 
