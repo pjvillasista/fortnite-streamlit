@@ -24,7 +24,7 @@ git clone https://github.com/yourusername/fortnite-stats-tracker.git
 cd fortnite-stats-tracker
 ```
 
-````
+
 
 2. **Install Requirements**:
 
@@ -64,4 +64,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) f
 
 - Special thanks to [Fortnite-API](https://dash.fortnite-api.com/) for providing the API used in this project.
 - This project is not affiliated with, maintained, authorized, endorsed, or sponsored by Epic Games or any of its affiliates.
-````
+
